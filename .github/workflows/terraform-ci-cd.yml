@@ -2,7 +2,7 @@ name: Terraform CI/CD - Azure Landing Zone
 
 on:
   push:
-    branches: [main, "feature/*"]
+    branches: [main, feature/*]
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -12,7 +12,7 @@ env:
   ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
   ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
   ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
-  TF_WORKING_DIR: "Monolathic landingzone/environment/dev"
+  TF_WORKING_DIR: environment/dev
 
 jobs:
   lint:
@@ -25,7 +25,7 @@ jobs:
           tflint_version: latest
       - name: Run TFLint
         working-directory: ${{ env.TF_WORKING_DIR }}
-        run:
+        run: |
           tflint --init
           tflint --minimum-failure-severity=error
 
@@ -62,7 +62,9 @@ jobs:
       - uses: hashicorp/setup-terraform@v3
       - name: Create tfvars file
         working-directory: ${{ env.TF_WORKING_DIR }}
-        run: echo "${{ secrets.TF_VARS_CONTENT }}" > terraform.tfvars
+        env:
+          TF_VARS_CONTENT: ${{ secrets.TF_VARS_CONTENT }}
+        run: printf '%s\n' "$TF_VARS_CONTENT" > terraform.tfvars
       - name: Terraform Init
         working-directory: ${{ env.TF_WORKING_DIR }}
         run: terraform init
@@ -71,7 +73,7 @@ jobs:
         run: terraform validate
       - name: Terraform Plan
         working-directory: ${{ env.TF_WORKING_DIR }}
-        run: terraform plan -input=false -out=tfplan
+        run: terraform plan -out=tfplan
       - name: Upload plan artifact
         uses: actions/upload-artifact@v4
         with:
@@ -89,7 +91,9 @@ jobs:
       - uses: hashicorp/setup-terraform@v3
       - name: Create tfvars file
         working-directory: ${{ env.TF_WORKING_DIR }}
-        run: echo "${{ secrets.TF_VARS_CONTENT }}" > terraform.tfvars
+        env:
+          TF_VARS_CONTENT: ${{ secrets.TF_VARS_CONTENT }}
+        run: printf '%s\n' "$TF_VARS_CONTENT" > terraform.tfvars
       - name: Terraform Init
         working-directory: ${{ env.TF_WORKING_DIR }}
         run: terraform init
@@ -100,4 +104,4 @@ jobs:
           path: ${{ env.TF_WORKING_DIR }}
       - name: Terraform Apply
         working-directory: ${{ env.TF_WORKING_DIR }}
-        run: terraform apply -input=false -auto-approve tfplan
+        run: terraform apply -auto-approve tfplan
