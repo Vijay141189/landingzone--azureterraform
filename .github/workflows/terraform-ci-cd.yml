@@ -73,7 +73,7 @@ jobs:
         run: terraform validate
       - name: Terraform Plan
         working-directory: ${{ env.TF_WORKING_DIR }}
-        run: terraform plan -out=tfplan
+        run: terraform plan -input=false -out=tfplan
       - name: Upload plan artifact
         uses: actions/upload-artifact@v4
         with:
@@ -104,4 +104,4 @@ jobs:
           path: ${{ env.TF_WORKING_DIR }}
       - name: Terraform Apply
         working-directory: ${{ env.TF_WORKING_DIR }}
-        run: terraform apply -auto-approve tfplan
+        run: terraform apply -input=false -auto-approve tfplan
