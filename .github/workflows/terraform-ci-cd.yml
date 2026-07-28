@@ -25,7 +25,7 @@ jobs:
           tflint_version: latest
       - name: Run TFLint
         working-directory: ${{ env.TF_WORKING_DIR }}
-        run: |
+        run:
           tflint --init
           tflint --minimum-failure-severity=error
 
