@@ -2,7 +2,7 @@ name: Terraform CI/CD - Azure Landing Zone
 
 on:
   push:
-    branches: [main, feature/*]
+    branches: [main, "feature/*"]
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -12,7 +12,7 @@ env:
   ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
   ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
   ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
-  TF_WORKING_DIR: environment/dev
+  TF_WORKING_DIR: "Monolathic landingzone/environment/dev"
 
 jobs:
   lint:
@@ -71,7 +71,7 @@ jobs:
         run: terraform validate
       - name: Terraform Plan
         working-directory: ${{ env.TF_WORKING_DIR }}
-        run: terraform plan -out=tfplan
+        run: terraform plan -input=false -out=tfplan
       - name: Upload plan artifact
         uses: actions/upload-artifact@v4
         with:
@@ -100,4 +100,4 @@ jobs:
           path: ${{ env.TF_WORKING_DIR }}
       - name: Terraform Apply
         working-directory: ${{ env.TF_WORKING_DIR }}
-        run: terraform apply -auto-approve tfplan
+        run: terraform apply -input=false -auto-approve tfplan
