@@ -60,11 +60,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: hashicorp/setup-terraform@v3
-      - name: Create tfvars file
-        working-directory: ${{ env.TF_WORKING_DIR }}
-        env:
-          TF_VARS_CONTENT: ${{ secrets.TF_VARS_CONTENT }}
-        run: printf '%s\n' "$TF_VARS_CONTENT" >> terraform.tfvars
       - name: Terraform Init
         working-directory: ${{ env.TF_WORKING_DIR }}
         run: terraform init
@@ -89,11 +84,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: hashicorp/setup-terraform@v3
-      - name: Create tfvars file
-        working-directory: ${{ env.TF_WORKING_DIR }}
-        env:
-          TF_VARS_CONTENT: ${{ secrets.TF_VARS_CONTENT }}
-        run: printf '%s\n' "$TF_VARS_CONTENT" >> terraform.tfvars
       - name: Terraform Init
         working-directory: ${{ env.TF_WORKING_DIR }}
         run: terraform init
