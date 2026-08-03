@@ -122,7 +122,7 @@ vms = {
 
 key_vaults = {
   key_vault1 = {
-    name                        = "keyvault1411-dev"
+    name                        = "keyvault1411selfdev"   # change kiya
     resource_group_name        = "resourcegroup1411self-dev"
     location                   = "southeastasia"
     sku_name                    = "standard"
