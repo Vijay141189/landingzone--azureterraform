@@ -7,7 +7,7 @@ rgs = {
 
 storage_accounts = {
   sa1 = {
-    name                     = "storageblob1411dev" # Storage Account names cannot contain hyphens
+    name                     = "storageblob1411selfdev" # Storage Account names cannot contain hyphens
     resource_group_name      = "resourcegroup1411-dev"
     location                 = "southeastasia"
     account_tier             = "Standard"
@@ -128,7 +128,7 @@ key_vaults = {
     sku_name                    = "standard"
     purge_protection_enabled    = true
     soft_delete_retention_days  = 90
-    tenant_id                   = "4b0e9ef6-ceb6-40a6-a157-545cae54cef1"
-    object_id                   = "08bb85b0-f04b-4f45-b97b-e9f9a6c0f35b"
+    tenant_id                   = "37a7890a-efe4-4836-9716-c9bdee7d3e79"
+    object_id                   = "35c316d1-30ca-4220-9ad8-e3aaf6ce2ba1"
   }
 }
