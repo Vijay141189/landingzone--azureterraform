@@ -1,6 +1,6 @@
 rgs = {
   rg1 = {
-    name     = "resourcegroup1411-dev"
+    name     = "resourcegroup1411self-dev"
     location = "southeastasia"
   }
 }
@@ -8,7 +8,7 @@ rgs = {
 storage_accounts = {
   sa1 = {
     name                     = "storageblob1411selfdev" # Storage Account names cannot contain hyphens
-    resource_group_name      = "resourcegroup1411-dev"
+    resource_group_name      = "resourcegroup1411self-dev"
     location                 = "southeastasia"
     account_tier             = "Standard"
     account_replication_type = "LRS"
@@ -20,26 +20,26 @@ vnets = {
     name                = "Terraformvnet1-dev"
     address_space       = ["10.0.0.0/16"]
     location            = "southeastasia"
-    resource_group_name = "resourcegroup1411-dev"
+    resource_group_name = "resourcegroup1411self-dev"
   }
 }
 
 subnets = {
   subnet1 = {
     name                 = "frontendsubnet1-dev"
-    resource_group_name  = "resourcegroup1411-dev"
+    resource_group_name  = "resourcegroup1411self-dev"
     virtual_network_name = "Terraformvnet1-dev"
     address_prefixes     = ["10.0.1.0/24"]
   }
   subnet2 = {
     name                 = "backendsubnet1-dev"
-    resource_group_name  = "resourcegroup1411-dev"
+    resource_group_name  = "resourcegroup1411self-dev"
     virtual_network_name = "Terraformvnet1-dev"
     address_prefixes     = ["10.0.2.0/24"]
   }
   subnet3 = {
     name                 = "dbsubnet1-dev"
-    resource_group_name  = "resourcegroup1411-dev"
+    resource_group_name  = "resourcegroup1411self-dev"
     virtual_network_name = "Terraformvnet1-dev"
     address_prefixes     = ["10.0.3.0/24"]
   }
@@ -48,19 +48,19 @@ subnets = {
 public_ips = {
   public_ip1 = {
     name                = "publicip1-dev"
-    resource_group_name = "resourcegroup1411-dev"
+    resource_group_name = "resourcegroup1411self-dev"
     location            = "southeastasia"
     allocation_method   = "Static"
   }
   public_ip2 = {
     name                = "publicip2-dev"
-    resource_group_name = "resourcegroup1411-dev"
+    resource_group_name = "resourcegroup1411self-dev"
     location            = "southeastasia"
     allocation_method   = "Static"
   }
   public_ip3 = {
     name                = "publicip3-dev"
-    resource_group_name = "resourcegroup1411-dev"
+    resource_group_name = "resourcegroup1411self-dev"
     location            = "southeastasia"
     allocation_method   = "Static"
   }
@@ -69,7 +69,7 @@ public_ips = {
 vms = {
   vm1 = {
     name                 = "vm-1-dev"
-    resource_group_name  = "resourcegroup1411-dev"
+    resource_group_name  = "resourcegroup1411self-dev"
     location             = "southeastasia"
     size                 = "Standard_B2s"
     admin_username       = "adminuser"
@@ -86,7 +86,7 @@ vms = {
   }
   vm2 = {
     name                 = "vm-2-dev"
-    resource_group_name  = "resourcegroup1411-dev"
+    resource_group_name  = "resourcegroup1411self-dev"
     location             = "southeastasia"
     size                 = "Standard_B2s"
     admin_username       = "adminuser"
@@ -103,7 +103,7 @@ vms = {
   }
   vm3 = {
     name                 = "vm-3-dev"
-    resource_group_name  = "resourcegroup1411-dev"
+    resource_group_name  = "resourcegroup1411self-dev"
     location             = "southeastasia"
     size                 = "Standard_B2s"
     admin_username       = "adminuser"
@@ -123,7 +123,7 @@ vms = {
 key_vaults = {
   key_vault1 = {
     name                        = "keyvault1411-dev"
-    resource_group_name        = "resourcegroup1411-dev"
+    resource_group_name        = "resourcegroup1411self-dev"
     location                   = "southeastasia"
     sku_name                    = "standard"
     purge_protection_enabled    = true
