@@ -51,11 +51,18 @@ locals {
   }
 }
 
+# Static set — sirf subnet_key (tfvars se, plan time pe hi known) ke basis par banaya,
+# subnet_id (jo apply ke baad pata chalta hai) use nahi kiya, warna for_each error aayega
+locals {
+  nsg_subnet_association_keys = toset([for k, v in var.nsgs : k if v.subnet_key != null])
+}
+
 module "azurerm_network_security_group" {
-  depends_on = [module.azurerm_subnet, module.azurerm_resource_group]
-  source     = "../../module/azurerm_network_security_group"
-  nsgs       = local.nsgs_with_subnet_ids
-  tags       = var.tags
+  depends_on               = [module.azurerm_subnet, module.azurerm_resource_group]
+  source                   = "../../module/azurerm_network_security_group"
+  nsgs                     = local.nsgs_with_subnet_ids
+  subnet_association_keys  = local.nsg_subnet_association_keys
+  tags                     = var.tags
 }
 
 # vms input me admin_password ko Key Vault se generate hue password se replace kar rahe hain,

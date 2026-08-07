@@ -44,9 +44,12 @@ resource "azurerm_network_security_rule" "rules" {
 }
 
 # NSG ko subnet ke saath associate karte hain
+# NOTE: for_each yahan "subnet_association_keys" (static set, root module se pass hota hai) par based hai,
+# na ki "subnet_id" (jo subnet create hone ke baad hi pata chalta hai) par —
+# warna Terraform plan time pe for_each ke keys resolve nahi kar payega ("Invalid for_each argument" error).
 resource "azurerm_subnet_network_security_group_association" "nsg_assoc" {
-  for_each = { for k, v in var.nsgs : k => v if v.subnet_id != null }
+  for_each = var.subnet_association_keys
 
-  subnet_id                 = each.value.subnet_id
-  network_security_group_id = azurerm_network_security_group.nsg[each.key].id
+  subnet_id                 = var.nsgs[each.value].subnet_id
+  network_security_group_id = azurerm_network_security_group.nsg[each.value].id
 }

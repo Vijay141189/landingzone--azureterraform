@@ -29,3 +29,9 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "subnet_association_keys" {
+  description = "Static set of nsg keys jinke liye subnet association banani hai. Root module se pass hota hai (subnet_key ke basis par, jo tfvars se static known hai — subnet_id se nahi, jo apply ke baad hi pata chalta hai)."
+  type        = set(string)
+  default     = []
+}
