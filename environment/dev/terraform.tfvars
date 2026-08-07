@@ -132,3 +132,95 @@ key_vaults = {
     object_id                   = "35c316d1-30ca-4220-9ad8-e3aaf6ce2ba1"
   }
 }
+
+# IMPORTANT: neeche "<REPLACE_WITH_YOUR_PUBLIC_IP>/32" ko apni actual office/VPN public IP se replace karo before apply.
+# "*" ya "Internet" kabhi bhi SSH (port 22) ke liye use mat karo — sirf HTTP/HTTPS jaise public-facing ports ke liye theek hai.
+nsgs = {
+  nsg_frontend = {
+    name                = "nsg-frontend-dev"
+    location            = "southeastasia"
+    resource_group_name = "resourcegroup1411self-dev"
+    subnet_key          = "subnet1" # frontendsubnet1-dev se associate hoga
+    rules = {
+      allow_ssh = {
+        name                        = "Allow-SSH-Admin"
+        priority                    = 100
+        direction                   = "Inbound"
+        access                      = "Allow"
+        protocol                    = "Tcp"
+        source_port_range           = "*"
+        destination_port_range      = "22"
+        source_address_prefix       = "<REPLACE_WITH_YOUR_PUBLIC_IP>/32"
+        destination_address_prefix  = "*"
+      }
+      allow_http = {
+        name                        = "Allow-HTTP-HTTPS"
+        priority                    = 110
+        direction                   = "Inbound"
+        access                      = "Allow"
+        protocol                    = "Tcp"
+        source_port_range           = "*"
+        destination_port_range      = "80"
+        source_address_prefix       = "Internet"
+        destination_address_prefix  = "*"
+      }
+    }
+  }
+  nsg_backend = {
+    name                = "nsg-backend-dev"
+    location            = "southeastasia"
+    resource_group_name = "resourcegroup1411self-dev"
+    subnet_key          = "subnet2" # backendsubnet1-dev se associate hoga
+    rules = {
+      allow_from_frontend = {
+        name                        = "Allow-App-From-Frontend"
+        priority                    = 100
+        direction                   = "Inbound"
+        access                      = "Allow"
+        protocol                    = "Tcp"
+        source_port_range           = "*"
+        destination_port_range      = "8080"
+        source_address_prefix       = "10.0.1.0/24"
+        destination_address_prefix  = "*"
+      }
+      allow_ssh = {
+        name                        = "Allow-SSH-Admin"
+        priority                    = 110
+        direction                   = "Inbound"
+        access                      = "Allow"
+        protocol                    = "Tcp"
+        source_port_range           = "*"
+        destination_port_range      = "22"
+        source_address_prefix       = "<REPLACE_WITH_YOUR_PUBLIC_IP>/32"
+        destination_address_prefix  = "*"
+      }
+    }
+  }
+  nsg_db = {
+    name                = "nsg-db-dev"
+    location            = "southeastasia"
+    resource_group_name = "resourcegroup1411self-dev"
+    subnet_key          = "subnet3" # dbsubnet1-dev se associate hoga
+    rules = {
+      allow_from_backend = {
+        name                        = "Allow-DB-From-Backend"
+        priority                    = 100
+        direction                   = "Inbound"
+        access                      = "Allow"
+        protocol                    = "Tcp"
+        source_port_range           = "*"
+        destination_port_range      = "5432"
+        source_address_prefix       = "10.0.2.0/24"
+        destination_address_prefix  = "*"
+      }
+    }
+  }
+}
+
+tags = {
+  Environment = "Dev"
+  Project     = "LandingZone"
+  Owner       = "Vijay"
+  ManagedBy   = "Terraform"
+  CostCenter  = "IT-Dev"
+}

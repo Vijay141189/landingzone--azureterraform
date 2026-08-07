@@ -1,7 +1,9 @@
 .terraform/
 *.tfstate
 *.tfstate.*
-
 .terraform.lock.hcl
 *.pem
 *.key
+gitleaks-report.json
+*.tfplan
+tfplan
