@@ -149,7 +149,7 @@ nsgs = {
         access                      = "Allow"
         protocol                    = "Tcp"
         source_port_range           = "*"
-        destination_port_range      = "22"
+        destination_port_range     = "22"
         source_address_prefix       = "182.71.51.34/32"
         destination_address_prefix  = "*"
       }
@@ -191,7 +191,7 @@ nsgs = {
         protocol                    = "Tcp"
         source_port_range           = "*"
         destination_port_range      = "22"
-        source_address_prefix       = "182.71.51.34/32" # Replace with your actual public IP
+        source_address_prefix       = "<REPLACE_WITH_YOUR_PUBLIC_IP>/32"
         destination_address_prefix  = "*"
       }
     }
