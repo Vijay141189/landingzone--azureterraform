@@ -71,7 +71,7 @@ vms = {
     name                 = "vm-1-dev"
     resource_group_name  = "resourcegroup1411self-dev"
     location             = "southeastasia"
-    size                 = "Standard_D2s_v3"
+    size                 = "Standard_B1s"
     admin_username       = "adminuser"
     # admin_password ab yaha nahi likha jaata — Key Vault module isse generate/inject karta hai
     subnet_name          = "frontendsubnet1-dev"
@@ -88,7 +88,7 @@ vms = {
     name                 = "vm-2-dev"
     resource_group_name  = "resourcegroup1411self-dev"
     location             = "southeastasia"
-    size                 = "Standard_D2s_v3"
+    size = "Standard_B1s"
     admin_username       = "adminuser"
     # admin_password ab yaha nahi likha jaata — Key Vault module isse generate/inject karta hai
     subnet_name          = "backendsubnet1-dev"
@@ -105,7 +105,7 @@ vms = {
     name                 = "vm-3-dev"
     resource_group_name  = "resourcegroup1411self-dev"
     location             = "southeastasia"
-    size                 = "Standard_D2s_v3"
+    size = "Standard_B1s"
     admin_username       = "adminuser"
     # admin_password ab yaha nahi likha jaata — Key Vault module isse generate/inject karta hai
     subnet_name          = "dbsubnet1-dev"
