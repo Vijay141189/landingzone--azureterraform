@@ -52,18 +52,18 @@ public_ips = {
     location            = "southeastasia"
     allocation_method   = "Static"
   }
-  public_ip2 = {
-    name                = "publicip2-dev"
-    resource_group_name = "resourcegroup1411self-dev"
-    location            = "southeastasia"
-    allocation_method   = "Static"
-  }
-  public_ip3 = {
-    name                = "publicip3-dev"
-    resource_group_name = "resourcegroup1411self-dev"
-    location            = "southeastasia"
-    allocation_method   = "Static"
-  }
+  # public_ip2 = {
+  #   name                = "publicip2-dev"
+  #   resource_group_name = "resourcegroup1411self-dev"
+  #   location            = "southeastasia"
+  #   allocation_method   = "Static"
+  # }
+  # public_ip3 = {
+  #   name                = "publicip3-dev"
+  #   resource_group_name = "resourcegroup1411self-dev"
+  #   location            = "southeastasia"
+  #   allocation_method   = "Static"
+  # }
 }
 
 vms = {
@@ -92,7 +92,7 @@ vms = {
     admin_username       = "adminuser"
     # admin_password ab yaha nahi likha jaata — Key Vault module isse generate/inject karta hai
     subnet_name          = "backendsubnet1-dev"
-    public_ip_name       = "publicip2-dev"
+    public_ip_name       = ""
     virtual_network_name = "Terraformvnet1-dev"
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
@@ -109,7 +109,7 @@ vms = {
     admin_username       = "adminuser"
     # admin_password ab yaha nahi likha jaata — Key Vault module isse generate/inject karta hai
     subnet_name          = "dbsubnet1-dev"
-    public_ip_name       = "publicip3-dev"
+    public_ip_name       = ""
     virtual_network_name = "Terraformvnet1-dev"
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
