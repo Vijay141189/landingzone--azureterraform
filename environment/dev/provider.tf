@@ -10,15 +10,15 @@ terraform {
         }
     }
 
-    backend "azurerm" {
-        resource_group_name  = "terraform-state-rg"
-        storage_account_name = "tfstatestorage1411"
-        container_name        = "tfstate"
-        key                    = "dev.terraform.tfstate"
-    }
+  backend "azurerm" {
+    resource_group_name  = "tfstate-rg"
+    storage_account_name = "tfstatelz1411"
+    container_name       = "tfstate"
+    key                   = "dev.terraform.tfstate"
+  }
 }
+
 
 provider "azurerm" {
     features {}
-    resource_provider_registrations = "none"
 }
